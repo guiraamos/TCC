@@ -1,7 +1,3 @@
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Threading.Tasks;
 using Microsoft.AspNetCore.Mvc;
 using MsAuthentication.DAO;
 using MsAuthentication.Entities;
@@ -14,7 +10,6 @@ namespace MsAuthentication.Controllers
         [HttpPost]
         public bool Authenticate(string username, string password)
         {
-            //User user = UserDAO.GetUserByUsername(username);
             string userLine  = UserDAO.GetUserByUsername(username);
             if(userLine != null){
                 string[] userSplited = userLine.Split(';');

@@ -1,0 +1,6 @@
+﻿---
+applications:
+- name: MsAuthenticate
+  memory: 128M
+  buildpack: https://github.com/cloudfoundry/dotnet-core-buildpack
+  host: MsAuthenticate
