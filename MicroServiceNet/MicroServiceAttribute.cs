@@ -1,29 +1,30 @@
 ﻿using System;
+using System.Collections.Generic;
 using System.Reflection;
 
 namespace MicroServiceNet
 {
     public class MicroServiceAttribute : Attribute
     {
-        private string Name;
+        private readonly string _name;
 
-        public MicroServiceAttribute(string Name)
+        public MicroServiceAttribute(string name)
         {
-            this.Name = Name;
+            this._name = name;
         }
 
 
 
-        public static string GetMicroService(Func<string> method)
+        public static string GetMicroService(Func<List<KeyValuePair<object, object>>, object> method)
         {
             var attrs = method.GetMethodInfo().GetCustomAttributes();
 
-            foreach (object attr in attrs)
+            foreach (var attr in attrs)
             {
                 MicroServiceAttribute authAttr = attr as MicroServiceAttribute;
                 if (authAttr != null)
                 {
-                    string auth = authAttr.Name;
+                    string auth = authAttr._name;
 
                     return auth;
                 }

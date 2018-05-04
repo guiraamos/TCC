@@ -1,18 +1,19 @@
 ﻿using System;
+using System.Collections.Generic;
 
 namespace MicroServiceNet
 {
     public class MicroServiceHostAttribute : Attribute
     {
-        private string Name;
+        private readonly string _name;
 
-        public MicroServiceHostAttribute(string Name)
+        public MicroServiceHostAttribute(string name)
         {
-            this.Name = Name;
+            this._name = name;
         }
 
 
-        public static string GetMicroService(Func<string> method)
+        public static string GetMicroService(Func<List<KeyValuePair<object, object>>, object> method)
         {
             var a = method.Method.DeclaringType;
 
