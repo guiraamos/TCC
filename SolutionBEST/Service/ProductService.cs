@@ -1,9 +1,11 @@
 ﻿using System.Collections.Generic;
+using System.ComponentModel.Composition;
 using MicroServiceNet;
 using RestSharp;
 
 namespace WebApplication1.Service
 {
+    [Export(typeof(IProductService))]
     [MicroServiceHost("http://localhost:26709/api")]
     public class ProductService : MicroServiceBase, IProductService
     {

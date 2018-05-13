@@ -46,11 +46,9 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Dependencias.cs" />
-    <Compile Include="GenericClass.cs" />
-    <Compile Include="IInterface.cs" />
+    <Compile Include="ConstrutorClasse.cs" />
+    <Compile Include="IMicroServiceNet.cs" />
     <Compile Include="MicroServiceAttribute.cs" />
-    <Compile Include="IMicroServiceBase.cs" />
     <Compile Include="MicroServiceBase.cs" />
     <Compile Include="MicroServiceHostAttribute.cs" />
     <Compile Include="MyTypeBuilder.cs" />

@@ -5,7 +5,7 @@ using RestSharp;
 namespace WebApplication1.Service
 {
     [MicroServiceHost("MsProduct")]
-    public interface IProductService : IInterface<IProductService>
+    public interface IProductService : IMicroServiceNet
     {
         [MicroService("GetAllProducts")]
         IRestResponse GetAllProducts(List<KeyValuePair<object, object>> parameters = null);

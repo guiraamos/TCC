@@ -1,4 +1,5 @@
-﻿using System;
+﻿using RestSharp;
+using System;
 using System.Linq;
 using System.Reflection;
 using System.Reflection.Emit;
@@ -19,7 +20,15 @@ namespace MicroServiceNet
             TypeBuilder DynamicClass = this.CreateClass();
             this.CreateConstructor(DynamicClass);
             for (int ind = 0; ind < PropertyNames.Count(); ind++)
-                CreateProperty(DynamicClass, PropertyNames[ind], Types[ind]);
+            {
+                var mthdName = "";
+                var param = "Execute<ProductService>(AddProduct, Method.POST, parameters);";
+
+
+
+                CreateMethod(DynamicClass, mthdName, param, typeof(IRestResponse), "A");
+            }
+
             Type type = DynamicClass.CreateType();
 
             return Activator.CreateInstance(type);
@@ -45,39 +54,34 @@ namespace MicroServiceNet
             typeBuilder.DefineDefaultConstructor(MethodAttributes.Public | MethodAttributes.SpecialName | MethodAttributes.RTSpecialName);
         }
 
-        private void CreateProperty(TypeBuilder typeBuilder, string propertyName, Type propertyType)
+        private void CreateMethod(TypeBuilder myTypeBld, string mthdName, Type[] mthdParams, Type returnType, string mthdAction)
         {
-            FieldBuilder fieldBuilder = typeBuilder.DefineField("_" + propertyName, propertyType, FieldAttributes.Private);
-
-            PropertyBuilder propertyBuilder = typeBuilder.DefineProperty(propertyName, PropertyAttributes.HasDefault, propertyType, null);
-            MethodBuilder getPropMthdBldr = typeBuilder.DefineMethod("get_" + propertyName, MethodAttributes.Public | MethodAttributes.SpecialName | MethodAttributes.HideBySig, propertyType, Type.EmptyTypes);
-            ILGenerator getIl = getPropMthdBldr.GetILGenerator();
-
-            getIl.Emit(OpCodes.Ldarg_0);
-            getIl.Emit(OpCodes.Ldfld, fieldBuilder);
-            getIl.Emit(OpCodes.Ret);
-
-            MethodBuilder setPropMthdBldr = typeBuilder.DefineMethod("set_" + propertyName,
-                  MethodAttributes.Public |
-                  MethodAttributes.SpecialName |
-                  MethodAttributes.HideBySig,
-                  null, new[] { propertyType });
-
-            ILGenerator setIl = setPropMthdBldr.GetILGenerator();
-            Label modifyProperty = setIl.DefineLabel();
-            Label exitSet = setIl.DefineLabel();
-
-            setIl.MarkLabel(modifyProperty);
-            setIl.Emit(OpCodes.Ldarg_0);
-            setIl.Emit(OpCodes.Ldarg_1);
-            setIl.Emit(OpCodes.Stfld, fieldBuilder);
-
-            setIl.Emit(OpCodes.Nop);
-            setIl.MarkLabel(exitSet);
-            setIl.Emit(OpCodes.Ret);
-
-            propertyBuilder.SetGetMethod(getPropMthdBldr);
-            propertyBuilder.SetSetMethod(setPropMthdBldr);
+            MethodBuilder myMthdBld = myTypeBld.DefineMethod(mthdName, MethodAttributes.Public | MethodAttributes.Static, returnType, mthdParams);
+            ILGenerator ILout = myMthdBld.GetILGenerator();
+            int numParams = mthdParams.Length;
+            for (byte x = 0; x < numParams; x++)
+            {
+                ILout.Emit(OpCodes.Ldarg_S, x);
+            }
+            if (numParams > 1)
+            {
+                for (int y = 0; y < (numParams - 1); y++)
+                {
+                    switch (mthdAction)
+                    {
+                        case "A":
+                            ILout.Emit(OpCodes.Add);
+                            break;
+                        case "M":
+                            ILout.Emit(OpCodes.Mul);
+                            break;
+                        default:
+                            ILout.Emit(OpCodes.Add);
+                            break;
+                    }
+                }
+            }
+            ILout.Emit(OpCodes.Ret);
         }
     }
 }

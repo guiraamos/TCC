@@ -19,9 +19,12 @@ namespace MicroServiceNet
 
             foreach (var attr in a.CustomAttributes)
             {
-                foreach (var item in attr.ConstructorArguments)
+                if (attr.AttributeType.Name.Equals("MicroServiceHostAttribute"))
                 {
-                    return item.Value.ToString();
+                    foreach (var item in attr.ConstructorArguments)
+                    {
+                        return item.Value.ToString();
+                    }
                 }
             }
 

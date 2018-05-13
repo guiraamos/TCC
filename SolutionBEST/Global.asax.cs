@@ -1,10 +1,11 @@
-﻿using System;
+﻿using MicroServiceNet;
+using System;
+using System.IO;
+using System.Linq;
+using System.Reflection;
 using System.Web.Mvc;
 using System.Web.Optimization;
 using System.Web.Routing;
-using MicroServiceNet;
-using SimpleInjector;
-using SimpleInjector.Integration.Web.Mvc;
 
 namespace WebApplication1
 {
@@ -13,18 +14,20 @@ namespace WebApplication1
         
         protected void Application_Start()
         {
-
-            var container = new Container();
             AreaRegistration.RegisterAllAreas();
             FilterConfig.RegisterGlobalFilters(GlobalFilters.Filters);
             RouteConfig.RegisterRoutes(RouteTable.Routes);
             BundleConfig.RegisterBundles(BundleTable.Bundles);
-
-            Dependencias.RegistrarDependencias();
-
-            DependencyResolver.SetResolver(new SimpleInjectorDependencyResolver(SimpleInjectorContainer.RegisterServices(container)));
+            teste();
         }
 
-        
+        private void teste()
+        {
+            var a = Assembly.GetExecutingAssembly();
+            foreach(var interfacee in a.GetExportedTypes().Where(t => t.IsInterface))
+            {
+
+            }
+        }
     }
 }

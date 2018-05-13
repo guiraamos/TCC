@@ -1,17 +1,13 @@
-﻿using System.Collections.Generic;
+﻿using System.ComponentModel.Composition;
 using System.Web.Mvc;
 using WebApplication1.Service;
 
 namespace SolutionBEST.Controllers
 {
-    public class MsProductController : Controller
+    public class MsProductController : MicroServiceController<MsProductController>
     {
+        [Import(typeof(IProductService))]
         IProductService _productService;
-
-        public MsProductController(IProductService productService)
-        {
-            _productService = productService;
-        }
 
         public ActionResult GetAll()
         {
