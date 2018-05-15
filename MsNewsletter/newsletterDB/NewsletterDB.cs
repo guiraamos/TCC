@@ -2,6 +2,7 @@ using System;
 using System.IO;
 using System.Collections.Generic;
 using MsNewsletter.Entities;
+
 namespace MsNewsletter.DAO{
 
 	public class UserDAO{

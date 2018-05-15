@@ -1,6 +1,7 @@
 ﻿---
 applications:
 - name: MsAuthenticate
-  memory: 128M
-  buildpack: https://github.com/cloudfoundry/dotnet-core-buildpack
-  host: MsAuthenticate
+  memory: 512M
+  stack: windows2012R2
+  services:
+   - myDiscoveryService

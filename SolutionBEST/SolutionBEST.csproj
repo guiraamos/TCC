@@ -157,7 +157,6 @@
     <Compile Include="App_Start\BundleConfig.cs" />
     <Compile Include="App_Start\FilterConfig.cs" />
     <Compile Include="App_Start\RouteConfig.cs" />
-    <Compile Include="Controllers\MicroServiceController.cs" />
     <Compile Include="Controllers\MsProductController.cs" />
     <Compile Include="Service\IProductService.cs" />
     <Compile Include="Global.asax.cs">

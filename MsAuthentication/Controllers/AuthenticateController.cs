@@ -6,7 +6,6 @@ namespace MsAuthentication.Controllers
     [Route("api/[controller]")]
     public class AuthenticateController : Controller
     {
-        // POST api/authenticate
         [HttpPost]
         public bool Authenticate(string username, string password)
         {

@@ -1,4 +1,5 @@
-﻿using System.ComponentModel.Composition;
+﻿using MicroServiceNet;
+using System.ComponentModel.Composition;
 using System.Web.Mvc;
 using WebApplication1.Service;
 
