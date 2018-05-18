@@ -13,7 +13,7 @@ namespace MicroServiceNet
         }
 
 
-        public static string GetMicroService(Func<List<KeyValuePair<object, object>>, object> method)
+        public static string GetMicroService(Func<List<KeyValuePair<string, string>>, object> method)
         {
             var a = method.Method.DeclaringType;
 

@@ -1,25 +1,50 @@
-﻿using RestSharp;
+﻿using Pivotal.Discovery.Client;
 using System;
 using System.Collections.Generic;
+using System.Net.Http;
+using System.Threading.Tasks;
+using System.Web.Mvc;
 
 namespace MicroServiceNet
 {
     public class MicroServiceBase
     {
-        public IRestResponse Execute<T>(Func<List<KeyValuePair<object, object>>, IRestResponse> method, Method methodHttp, List<KeyValuePair<object, object>> parameters = null) 
+        private DiscoveryHttpClientHandler _handler;
+
+
+        public Task<HttpResponseMessage> Execute<T>(Func<List<KeyValuePair<string, string>>, Task<HttpResponseMessage>> method, HttpVerbs action, List<KeyValuePair<string, string>> parameters = null)
             where T : MicroServiceBase
         {
-            var request = new RestRequest(MicroServiceAttribute.GetMicroService(method), methodHttp);
+            FormUrlEncodedContent encodedContent = null;
 
-            if (parameters != null)
+            if (parameters != null || parameters.Count > 0)
+                encodedContent = new FormUrlEncodedContent(parameters);
+
+            Uri MyUri = new Uri(new Uri(MicroServiceHostAttribute.GetMicroService(method)), MicroServiceAttribute.GetMicroService(method));
+
+            var client = new HttpClient(_handler, false);
+
+            Task<HttpResponseMessage> result = null;
+
+            switch (action)
             {
-                foreach (var parameter in parameters)
-                {
-                    request.AddParameter(parameter.Key.ToString(), parameter.Value);
-                }
+                case HttpVerbs.Get:
+                    result = client.GetAsync(MyUri);
+                    break;
+                case HttpVerbs.Post:
+                    result = client.PostAsync(MyUri, encodedContent);
+                    break;
+                case HttpVerbs.Put:
+                    result = client.PutAsync(MyUri, encodedContent);
+                    break;
+                case HttpVerbs.Delete:
+                    result = client.DeleteAsync(MyUri);
+                    break;
+                default:
+                    break;
             }
 
-            return new RestClient(MicroServiceHostAttribute.GetMicroService(method)).Execute(request);
+            return result;
         }
     }
 }

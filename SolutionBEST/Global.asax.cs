@@ -1,13 +1,6 @@
-﻿using MicroServiceNet;
-using System;
-using System.Collections.Generic;
-using System.IO;
-using System.Linq;
-using System.Reflection;
-using System.Web.Mvc;
+﻿using System.Web.Mvc;
 using System.Web.Optimization;
 using System.Web.Routing;
-using WebApplication1.Service;
 
 namespace WebApplication1
 {

@@ -1,7 +1,0 @@
-﻿---
-applications:
-- name: MsAuthenticate
-  memory: 512M
-  stack: windows2012R2
-  services:
-   - myDiscoveryService
