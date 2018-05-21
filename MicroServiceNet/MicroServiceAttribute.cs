@@ -1,21 +1,23 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Net.Http;
 using System.Reflection;
+using System.Web.Mvc;
 
 namespace MicroServiceNet
 {
     public class MicroServiceAttribute : Attribute
     {
         private readonly string _name;
+        private HttpVerbs _action;
 
-        public MicroServiceAttribute(string name)
+        public MicroServiceAttribute(string name, HttpVerbs action)
         {
             this._name = name;
+            this._action = action;
         }
 
-
-
-        public static string GetMicroService(Func<List<KeyValuePair<string, string>>, object> method)
+        public static MicroService GetMicroService(Func<List<KeyValuePair<string, string>>, object> method)
         {
             var attrs = method.GetMethodInfo().GetCustomAttributes();
 
@@ -24,9 +26,7 @@ namespace MicroServiceNet
                 MicroServiceAttribute authAttr = attr as MicroServiceAttribute;
                 if (authAttr != null)
                 {
-                    string auth = authAttr._name;
-
-                    return auth;
+                    return new MicroService() { Name = authAttr._name, Action = authAttr._action };
                 }
             }
 

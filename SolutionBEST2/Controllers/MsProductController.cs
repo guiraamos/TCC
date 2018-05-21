@@ -1,10 +1,8 @@
-﻿using MicroServiceNet;
-using Service;
+﻿using SolutionBEST2.Services;
 using System.Collections.Generic;
-using System.ComponentModel.Composition;
-using System.Web.Mvc;
+using Microsoft.AspNetCore.Mvc;
 
-namespace SolutionBEST.Controllers
+namespace SolutionBEST2.Controllers
 {
     public class MsProductController : Controller
     {

@@ -9,6 +9,8 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SolutionBEST", "SolutionBES
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "MicroServiceNet", "MicroServiceNet\MicroServiceNet.csproj", "{C43AE0F9-2543-47AE-9E52-873406181D99}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SolutionBEST2", "SolutionBEST2\SolutionBEST2.csproj", "{E6E41BC7-ABD9-41A1-83B2-3AD67CE89306}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -27,6 +29,10 @@ Global
 		{C43AE0F9-2543-47AE-9E52-873406181D99}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{C43AE0F9-2543-47AE-9E52-873406181D99}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{C43AE0F9-2543-47AE-9E52-873406181D99}.Release|Any CPU.Build.0 = Release|Any CPU
+		{E6E41BC7-ABD9-41A1-83B2-3AD67CE89306}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{E6E41BC7-ABD9-41A1-83B2-3AD67CE89306}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{E6E41BC7-ABD9-41A1-83B2-3AD67CE89306}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{E6E41BC7-ABD9-41A1-83B2-3AD67CE89306}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

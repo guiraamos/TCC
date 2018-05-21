@@ -20,7 +20,7 @@ namespace MicroServiceNet
             if (parameters != null || parameters.Count > 0)
                 encodedContent = new FormUrlEncodedContent(parameters);
 
-            Uri MyUri = new Uri(new Uri(MicroServiceHostAttribute.GetMicroService(method)), MicroServiceAttribute.GetMicroService(method));
+            Uri MyUri = new Uri(new Uri(MicroServiceHostAttribute.GetMicroService(method)), MicroServiceAttribute.GetMicroService(method).Name);
 
             var client = new HttpClient(_handler, false);
 
