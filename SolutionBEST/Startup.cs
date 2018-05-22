@@ -1,10 +1,16 @@
+using System;
+using System.Linq;
+using System.Reflection;
+using System.Transactions;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
+using MicroServiceNet;
 using Pivotal.Discovery.Client;
+using Service;
 
-namespace SolutionBEST2
+namespace SolutionBEST
 {
     public class Startup
     {
@@ -19,6 +25,8 @@ namespace SolutionBEST2
         public void ConfigureServices(IServiceCollection services)
         {
             services.AddDiscoveryClient(Configuration);
+
+            MicroServiceNetInjection.Configure(Assembly.GetExecutingAssembly(), services);
 
             services.AddMvc();
         }

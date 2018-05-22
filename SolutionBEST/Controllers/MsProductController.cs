@@ -1,16 +1,23 @@
-﻿using MicroServiceNet;
+﻿using System.Collections.Generic;
+using System.Threading.Tasks;
+using Microsoft.AspNetCore.Mvc;
+using MicroServiceNet;
 using Service;
-using System.Collections.Generic;
-using System.ComponentModel.Composition;
-using System.Web.Mvc;
 
 namespace SolutionBEST.Controllers
 {
+    [Route("/")]
     public class MsProductController : Controller
     {
-        IMsProductControllerService _productService;
+        private IMsProductService _productService;
+        public MsProductController(IMsProductService productService)
+        {
+            _productService = productService;
+        }
 
-        public ActionResult GetAll()
+
+        [HttpGet]
+        public async Task<string> Index()
         {
             var requestParams = new List<KeyValuePair<string, string>>
             {
@@ -18,11 +25,9 @@ namespace SolutionBEST.Controllers
                 new KeyValuePair<string, string>("password", "mest")
             };
 
+            var a = _productService.GetAll();
 
-            var request = MicroServiceNet.MicroServiceNet.Execute(_productService.GetAll, requestParams);
-            var r = request.Result;
-
-            return View();
+            return "";
         }
     }
 }

@@ -1,5 +1,8 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Net.Http;
+using System.Reflection;
+using System.Threading.Tasks;
 
 namespace MicroServiceNet
 {
@@ -13,11 +16,12 @@ namespace MicroServiceNet
         }
 
 
-        public static string GetMicroService(Func<List<KeyValuePair<string, string>>, object> method)
-        {
-            var a = method.Method.DeclaringType;
 
-            foreach (var attr in a.CustomAttributes)
+
+        public static string GetMicroService(Type interfac3)
+        {
+
+            foreach (var attr in interfac3.CustomAttributes)
             {
                 if (attr.AttributeType.Name.Equals("MicroServiceHostAttribute"))
                 {
