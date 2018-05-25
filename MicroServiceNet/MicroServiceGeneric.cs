@@ -8,13 +8,13 @@ using Pivotal.Discovery.Client;
 
 namespace MicroServiceNet
 {
-    public class MicroServiceGeneric<T>
+    public class MicroService<T>
     {
         private DiscoveryHttpClientHandler _handler;
         private ILogger<T> _logger;
 
 
-        public MicroServiceGeneric(IDiscoveryClient client, ILoggerFactory logFactory)
+        public MicroService(IDiscoveryClient client, ILoggerFactory logFactory)
         {
             _handler = new DiscoveryHttpClientHandler(client, logFactory.CreateLogger<DiscoveryHttpClientHandler>());
             _logger = logFactory.CreateLogger<T>();
