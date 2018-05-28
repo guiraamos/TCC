@@ -5,7 +5,7 @@ namespace Service
     using System.Threading.Tasks;
     using MicroServiceNet;
 
-    [MicroServiceHost("MSNEWSLETTER")]
+    [MicroServiceHost("MSPRODUCT")]
     public interface IMsProductService : IMicroService
     {
         [MicroService("GetAllProducts", TypeRequest.Get)]

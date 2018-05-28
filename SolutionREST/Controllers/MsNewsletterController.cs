@@ -20,7 +20,7 @@ namespace SolutionREST.Controllers
                 };
 
                 var requestParamsFormUrlEncoded = new FormUrlEncodedContent(requestParams);
-                var tokenServiceResponse = await client.PostAsync("http://localhost:1479/api/Newsletter/Subscribe", requestParamsFormUrlEncoded);
+                var tokenServiceResponse = await client.PostAsync("http://177.105.34.182:5003/api/Newsletter/Subscribe", requestParamsFormUrlEncoded);
                 var responseString = await tokenServiceResponse.Content.ReadAsStringAsync();
 
                 var responseCode = tokenServiceResponse.StatusCode;
@@ -38,7 +38,7 @@ namespace SolutionREST.Controllers
         {
             using (var client = new HttpClient())
             {;
-                var tokenServiceResponse = await client.PostAsync("http://localhost:1479/api/Newsletter/Publish", null);
+                var tokenServiceResponse = await client.PostAsync("http://177.105.34.182:5003/api/Newsletter/Publish", null);
                 var responseString = await tokenServiceResponse.Content.ReadAsStringAsync();
 
                 var responseCode = tokenServiceResponse.StatusCode;

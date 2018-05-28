@@ -22,7 +22,7 @@ namespace SolutionREST.Controllers
                 };
 
                 var requestParamsFormUrlEncoded = new FormUrlEncodedContent(requestParams);
-                var tokenServiceResponse = await client.PostAsync("http://localhost:26709/api/Customer/AddCustomer", requestParamsFormUrlEncoded);
+                var tokenServiceResponse = await client.PostAsync("http://177.105.34.182:5002/api/Customer/AddCustomer", requestParamsFormUrlEncoded);
                 var responseString = await tokenServiceResponse.Content.ReadAsStringAsync();
 
                 var responseCode = tokenServiceResponse.StatusCode;
@@ -40,7 +40,7 @@ namespace SolutionREST.Controllers
         {
             using (var client = new HttpClient())
             {
-                var tokenServiceResponse = await client.GetAsync("http://localhost:26709/api/Customer/GetAllClientes");
+                var tokenServiceResponse = await client.GetAsync("http://177.105.34.182:5002/api/Customer/GetAllClientes");
                 var responseString = await tokenServiceResponse.Content.ReadAsStringAsync();
 
                 var responseCode = tokenServiceResponse.StatusCode;
@@ -58,7 +58,8 @@ namespace SolutionREST.Controllers
         {
             using (var client = new HttpClient())
             {
-                var tokenServiceResponse = await client.GetAsync(String.Format("http://localhost:26709/api/Customer/GetClientePorCpf?cpf={0}","420.618.058-09"));
+                var url = String.Format("http://177.105.34.182:5002/api/Customer/GetClientePorCpf?cpf={0}", "420.618.058-09");
+                var tokenServiceResponse = await client.GetAsync(url);
                 var responseString = await tokenServiceResponse.Content.ReadAsStringAsync();
 
                 var responseCode = tokenServiceResponse.StatusCode;
@@ -76,7 +77,8 @@ namespace SolutionREST.Controllers
         {
             using (var client = new HttpClient())
             {
-                var tokenServiceResponse = await client.GetAsync(String.Format("http://localhost:26709/api/Customer/Delete?cpf={0}", "420.618.058-09"));
+                var url = String.Format("http://177.105.34.182:5002/api/Customer/Delete?cpf={0}", "420.618.058-09");
+                var tokenServiceResponse = await client.GetAsync(url);
                 var responseString = await tokenServiceResponse.Content.ReadAsStringAsync();
 
                 var responseCode = tokenServiceResponse.StatusCode;

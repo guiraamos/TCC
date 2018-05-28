@@ -5,7 +5,7 @@ namespace Service
     using System.Threading.Tasks;
     using MicroServiceNet;
 
-    [MicroServiceHost("MSNEWSLETTER")]
+    [MicroServiceHost("MSAUTHENTICATE")]
     public interface IMsAuthenticateService : IMicroService
     {
         [MicroService("Authenticate", TypeRequest.Post)]
